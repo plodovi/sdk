@@ -1,0 +1,7 @@
+node_modules
+.vscode
+.github
+.editorconfig
+web-dev-server.config.mjs
+demo
+src
