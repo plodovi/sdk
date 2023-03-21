@@ -1,25 +1,32 @@
 import { html, css, LitElement } from 'lit';
-import { property } from 'lit/decorators.js';
+import { property, state } from 'lit/decorators.js';
+import {ListenerType} from './init';
 
 export class Cart extends LitElement {
   static styles = css`
-    :host {
-      display: block;
-      padding: 25px;
-      color: var(--plodovi-products-text-color, #000);
-    }
+    :host {}
   `;
 
   @property({ type: Number }) counter = 5;
+  @state() open = false;
 
-  __increment() {
-    this.counter += 1;
+  onOpen = (open: boolean) => {
+    this.open = open;
+  }
+
+  connectedCallback() {
+    super.connectedCallback();
+    window.Plodovi.registerListener(ListenerType.CartOpen, this.onOpen);
+  }
+
+  disconnectedCallback() {
+    super.disconnectedCallback();
+    window.Plodovi.removeListerner(ListenerType.CartOpen, this.onOpen);
   }
 
   render() {
-    return html`
-      <h2>${this.title} Nr. ${this.counter}!</h2>
-      <button @click=${this.__increment}>increment</button>
-    `;
+    return this.open ? html`
+      <p>Cart</p>
+    ` : '';
   }
 }

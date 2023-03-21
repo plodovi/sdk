@@ -1,25 +1,39 @@
 import { html, css, LitElement } from 'lit';
-import { property } from 'lit/decorators.js';
+import { property, state } from 'lit/decorators.js';
+import {ListenerType} from './init';
 
 export class CartToggle extends LitElement {
   static styles = css`
-    :host {
-      display: block;
-      padding: 25px;
-      color: var(--plodovi-products-text-color, #000);
-    }
+    :host {}
   `;
 
-  @property({ type: Number }) counter = 5;
+  @property({ type: Boolean }) count = false;
+  @state() cartItems = 0;
 
-  __increment() {
-    this.counter += 1;
+  __toggle() {
+    window.Plodovi.toggleCart();
+  }
+
+  __updateCount = (count: number) => {
+    this.cartItems = count;
+  }
+
+  connectedCallback() {
+    super.connectedCallback();
+    window.Plodovi.registerListener(ListenerType.CartItem, this.__updateCount);
+  }
+
+  disconnectedCallback() {
+    super.disconnectedCallback();
+    window.Plodovi.removeListerner(ListenerType.CartItem, this.__updateCount);
   }
 
   render() {
     return html`
-      <h2>${this.title} Nr. ${this.counter}!</h2>
-      <button @click=${this.__increment}>increment</button>
+      <button @click=${this.__toggle}>
+        <slot></slot>
+      </button>
+      ${this.count ? this.cartItems && html`<span>${this.cartItems}</span>` : ''}
     `;
   }
 }

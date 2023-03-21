@@ -12,20 +12,46 @@
   <div id="demo"></div>
 
   <script type="module">
+
+    /**
+     * Initialize firebase 
+     */
+    import { initializeApp } from "firebase/app";
+
+    // Initialize Firebase
+    const app = initializeApp({
+      apiKey: "AIzaSyAvRkLdNKpKDg2zdmcNuYjgMOuDRyhNf58",
+      authDomain: "plodovi-dev.firebaseapp.com",
+      databaseURL: "https://plodovi-dev.firebaseio.com",
+      projectId: "plodovi-dev",
+      storageBucket: "plodovi-dev.appspot.com",
+      messagingSenderId: "875516253942",
+      appId: "1:875516253942:web:ace26c0a5ca555c4537ed7",
+      measurementId: "G-M7MRKCV157"
+    });
+
     import { html, render } from 'lit';
-    import '../dist/src/init.js';
+
+    import {init} from '../dist/src/init.js';
     import '../dist/src/ce-products.js';
     import '../dist/src/ce-product.js';
     import '../dist/src/ce-cart.js';
     import '../dist/src/ce-cart-toggle.js';
     import '../dist/src/ce-add-to-cart.js';
 
-    const title = 'Hello owc World!';
+    init({
+      region: 'osjecko-baranjska-zupanija'
+    });
+    
     render(
       html`
-        <plodovi-products .title=${title}>
+        <plodovi-cart-toggle>
           some light-dom
-        </plodovi-products>
+        </plodovi-cart-toggle>
+
+        <plodovi-cart></plodovi-cart>
+
+        <plodovi-add-to-cart></plodovi-add-to-cart>
       `,
       document.querySelector('#demo')
     );

@@ -3,23 +3,21 @@ import { property } from 'lit/decorators.js';
 
 export class AddToCart extends LitElement {
   static styles = css`
-    :host {
-      display: block;
-      padding: 25px;
-      color: var(--plodovi-products-text-color, #000);
-    }
+    :host {}
   `;
 
-  @property({ type: Number }) counter = 5;
+  @property({ type: String }) product = '';
+  @property({ type: Number }) quantity = 1;
 
-  __increment() {
-    this.counter += 1;
+  __add() {
+    
   }
 
   render() {
     return html`
-      <h2>${this.title} Nr. ${this.counter}!</h2>
-      <button @click=${this.__increment}>increment</button>
+      <button @click=${this.__add}>
+        <slot></slot>  
+      </button>
     `;
   }
 }
