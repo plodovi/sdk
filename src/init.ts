@@ -1,4 +1,4 @@
-import { doc, Firestore, getDoc, getFirestore, setDoc } from '@firebase/firestore';
+import { doc, Firestore, getDoc, getFirestore, setDoc, onSnapshot } from '@firebase/firestore';
 import { FirebaseApp } from '@firebase/app';
 import { Cart, CartItem } from './interfaces/cart.interface';
 
@@ -17,12 +17,34 @@ export class Plodovi {
 	constructor(options: Options) {
 		this.region = options.region;
 
-    if (!options.userId) {
-      options.userId = this.generateGuestId();
-      localStorage.setItem('plodovi-guest-id', options.userId);
+    if (options.userId) {
+      this.userId = options.userId;
+    } else {
+
+      const ls = localStorage.getItem('plodovi-guest-id');
+
+      if (ls) {
+        this.userId = ls;
+      } else {
+        this.userId = this.generateGuestId();
+        localStorage.setItem('plodovi-guest-id', this.userId);
+      }
     }
-		this.userId = options.userId;
+
     this.firestore = getFirestore(options.app);
+
+    onSnapshot(doc(this.firestore, 'carts', this.userId), doc => {
+      if (doc.exists()) {
+
+        const cart = doc.data() as Cart;
+
+        this.onCartCountChange(cart.items.length);
+
+        return;
+      }
+
+      this.onCartCountChange(0);
+    })
 	}
 
 	region: string;
@@ -81,18 +103,18 @@ export class Plodovi {
       };
     }
 
-    this.onCartCountChange(this.cart.items.length);
     await setDoc(doc(this.firestore, 'carts', this.userId), this.cart);
   }
 
-  generateGuestId(): string {
-    // Alphanumeric characters
+  generateGuestId() {
     const chars =
       'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
     let autoId = '';
+    
     for (let i = 0; i < 20; i++) {
       autoId += chars.charAt(Math.floor(Math.random() * chars.length));
     }
+    
     return autoId;
   }
 
@@ -113,7 +135,7 @@ export class Plodovi {
 
 	onCartCountChange(items: number) {
     this.cartItems = items;
-    console.log('onCartCountChange', this.cartItems);
+    this.callListeners(ListenerType.CartItem, this.cartItems);
   }
 
 	registerListener(type: ListenerType, listener: (event: any) => void) {
