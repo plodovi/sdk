@@ -14,7 +14,7 @@
   <script type="module">
 
     /**
-     * Initialize firebase 
+     * Initialize firebase
      */
     import { initializeApp } from "firebase/app";
 
@@ -40,16 +40,18 @@
     import '../dist/src/ce-add-to-cart.js';
 
     init({
-      region: 'osjecko-baranjska-zupanija'
+      userId: localStorage.getItem('plodovi-user-id'),
+      region: 'osjecko-baranjska-zupanija',
+      app
     });
-    
+
     render(
       html`
         <plodovi-cart-toggle>A Toggle</plodovi-cart-toggle>
 
         <plodovi-cart></plodovi-cart>
 
-        <plodovi-add-to-cart>Add This Product</plodovi-add-to-cart>
+        <plodovi-add-to-cart product='TAvYuTxvRZ8oqCHV4b2t' pack='0'>Add This Product</plodovi-add-to-cart>
       `,
       document.querySelector('#demo')
     );

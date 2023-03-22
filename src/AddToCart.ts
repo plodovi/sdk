@@ -6,17 +6,18 @@ export class AddToCart extends LitElement {
     :host {}
   `;
 
-  @property({ type: String }) product = '';
-  @property({ type: Number }) quantity = 1;
+  @property() product = '';
+  @property() quantity = 1;
+  @property() pack: number | undefined = undefined;
 
-  __add() {
-    
+  async __add() {
+    await window.Plodovi.addToCart(this.product, this.quantity, this.pack);
   }
 
   render() {
     return html`
       <button @click=${this.__add}>
-        <slot></slot>  
+        <slot></slot>
       </button>
     `;
   }

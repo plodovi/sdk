@@ -15,10 +15,12 @@ export class CartToggle extends LitElement {
   }
 
   __updateCount = (count: number) => {
+    console.log('updateCount', count);
     this.cartItems = count;
   }
 
   connectedCallback() {
+    console.log('connectedCallback');
     super.connectedCallback();
     window.Plodovi.registerListener(ListenerType.CartItem, this.__updateCount);
   }
@@ -30,6 +32,7 @@ export class CartToggle extends LitElement {
 
   render() {
     return html`
+      <span></span>
       <button @click=${this.__toggle}>
         <slot></slot>
       </button>
