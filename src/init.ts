@@ -4,7 +4,8 @@ import { Cart, CartItem } from './interfaces/cart.interface';
 
 export enum ListenerType {
 	CartItem = 'cart-item',
-	CartOpen = 'cart-open'
+	CartOpen = 'cart-open',
+	Cart = 'cart'
 }
 
 export interface Options {
@@ -35,15 +36,16 @@ export class Plodovi {
 
     onSnapshot(doc(this.firestore, 'carts', this.userId), doc => {
       if (doc.exists()) {
-
         const cart = doc.data() as Cart;
 
         this.onCartCountChange(cart.items.length);
+        this.onCartChange(cart);
 
         return;
       }
 
       this.onCartCountChange(0);
+      this.onCartChange(null);
     })
 	}
 
@@ -106,27 +108,23 @@ export class Plodovi {
     await setDoc(doc(this.firestore, 'carts', this.userId), this.cart);
   }
 
+  async removeCartItem(cartItems: CartItem[], item: CartItem) {
+    await setDoc(doc(this.firestore, 'carts', this.userId), {
+      items: cartItems.filter((item: any) => item.id !== item.id)
+    }, {merge: true});
+  }
+
   generateGuestId() {
     const chars =
       'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
     let autoId = '';
-    
+
     for (let i = 0; i < 20; i++) {
       autoId += chars.charAt(Math.floor(Math.random() * chars.length));
     }
-    
+
     return autoId;
   }
-
-	openCart() {
-		this.cartOpen = true;
-		this.callListeners(ListenerType.CartOpen, this.cartOpen);
-	}
-
-	closeCart() {
-		this.cartOpen = false;
-		this.callListeners(ListenerType.CartOpen, this.cartOpen);
-	}
 
 	toggleCart() {
 		this.cartOpen = !this.cartOpen;
@@ -138,11 +136,16 @@ export class Plodovi {
     this.callListeners(ListenerType.CartItem, this.cartItems);
   }
 
+	onCartChange(cart: Cart | null) {
+    this.cart = cart;
+    this.callListeners(ListenerType.Cart, this.cart);
+  }
+
 	registerListener(type: ListenerType, listener: (event: any) => void) {
 		this.listeners.push({ type, listener });
 	}
 
-	removeListerner(type: ListenerType, listener: (event: any) => void) {
+  removeListener(type: ListenerType, listener: (event: any) => void) {
 		this.listeners = this.listeners.filter(
 			(l) => l.type !== type || l.listener !== listener
 		);
@@ -156,7 +159,7 @@ export class Plodovi {
   ) {
     const data: CartItem = {
       id: product.id,
-      label: product.title,
+      label: [product.subCategory, product.strain, product.subStrain].filter(it => it).join(' - '),
       price,
       quantity,
       retailer: product.retailer,

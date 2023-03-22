@@ -25,7 +25,7 @@ export class CartToggle extends LitElement {
 
   disconnectedCallback() {
     super.disconnectedCallback();
-    window.Plodovi.removeListerner(ListenerType.CartItem, this.__updateCount);
+    window.Plodovi.removeListener(ListenerType.CartItem, this.__updateCount);
   }
 
   render() {
