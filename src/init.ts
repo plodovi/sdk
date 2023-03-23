@@ -1,6 +1,7 @@
 import { doc, Firestore, getDoc, getFirestore, setDoc, onSnapshot } from '@firebase/firestore';
 import { FirebaseApp } from '@firebase/app';
 import { Cart, CartItem } from './interfaces/cart.interface';
+import { sign } from 'crypto';
 
 export enum ListenerType {
 	CartItem = 'cart-item',
@@ -21,7 +22,6 @@ export class Plodovi {
     if (options.userId) {
       this.userId = options.userId;
     } else {
-
       const ls = localStorage.getItem('plodovi-guest-id');
 
       if (ls) {
@@ -61,10 +61,6 @@ export class Plodovi {
 		type: ListenerType;
 		listener: (event: any) => void;
 	}> = [];
-
-	async loadProducts(retailer: string) {}
-
-	async loadProduct(product: string) {}
 
   async addToCart(productId: string, quantity: number, pack: number | undefined) {
     const productSnap = await getDoc(doc(this.firestore, 'products', productId));
@@ -110,8 +106,29 @@ export class Plodovi {
 
   async removeCartItem(cartItems: CartItem[], item: CartItem) {
     await setDoc(doc(this.firestore, 'carts', this.userId), {
-      items: cartItems.filter((item: any) => item.id !== item.id)
+      items: cartItems.filter((it: any) => it.id !== item.id)
     }, {merge: true});
+  }
+
+  async changeQuantity(cartItems: CartItem[], item: CartItem, quantity: number) {
+    item.quantity = quantity;
+
+    if (quantity <= 0) {
+      cartItems = cartItems.filter((item: any) => item.id !== item.id)
+    }
+
+    await setDoc(doc(this.firestore, 'carts', this.userId), {
+      items: cartItems
+    }, {merge: true});
+  }
+
+  async checkoutRedirect() {
+    // console.log(sign({"cartId": "2wvgtWow5BAmqagDUUPs", "externalCheckoutId": "PtGuejNRdvaItg3gyZbR"}, 'plodovi'));
+    if (this.cart) {
+      // const token = sign("{cartId: '2wvgtWow5BAmqagDUUPs', externalCheckoutId: 'PtGuejNRdvaItg3gyZbR'}", 'plodovi')
+      // todo: redirect to checkout
+      // window.location.href = `https://plodovi.hr/checkout/${this.userId}`;
+    }
   }
 
   generateGuestId() {

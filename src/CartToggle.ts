@@ -30,7 +30,6 @@ export class CartToggle extends LitElement {
 
   render() {
     return html`
-      <span></span>
       <button @click=${this.__toggle}>
         <slot></slot>
       </button>

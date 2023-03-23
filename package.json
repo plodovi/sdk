@@ -21,7 +21,8 @@
     "semantic-release": "semantic-release"
   },
   "dependencies": {
-    "lit": "2.0.2"
+    "lit": "2.0.2",
+    "jsonwebtoken": "^8.5.1"
   },
   "devDependencies": {
     "@custom-elements-manifest/analyzer": "0.4.17",
