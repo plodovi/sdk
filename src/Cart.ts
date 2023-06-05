@@ -26,6 +26,10 @@ export class Cart extends LitElement {
     await window.Plodovi.removeCartItem(this.cart?.items || [], item);
   };
 
+  createRenderRoot() {
+    return this;
+  }
+
   connectedCallback() {
     super.connectedCallback();
     window.Plodovi.registerListener(ListenerType.CartOpen, this.__onOpen);

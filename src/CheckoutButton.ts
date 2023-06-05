@@ -5,20 +5,16 @@ export class CheckoutButton extends LitElement {
     :host {}
   `;
 
-  // @property({ type: Boolean }) count = true;
-  // @state() cartItems = 0;
-
-  __updateCount = (count: number) => {
-  }
-
   connectedCallback() {
     super.connectedCallback();
-    // window.Plodovi.registerListener(ListenerType.CartItem, this.__updateCount);
   }
 
   disconnectedCallback() {
     super.disconnectedCallback();
-    // window.Plodovi.removeListener(ListenerType.CartItem, this.__updateCount);
+  }
+
+  createRenderRoot() {
+    return this;
   }
 
   render() {

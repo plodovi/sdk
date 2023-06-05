@@ -1,7 +1,7 @@
 import { doc, Firestore, getDoc, getFirestore, setDoc, onSnapshot } from '@firebase/firestore';
 import { FirebaseApp } from '@firebase/app';
 import { Cart, CartItem } from './interfaces/cart.interface';
-import { sign } from 'crypto';
+import * as jwt from 'jsonwebtoken';
 
 export enum ListenerType {
 	CartItem = 'cart-item',
@@ -123,11 +123,9 @@ export class Plodovi {
   }
 
   async checkoutRedirect() {
-    // console.log(sign({"cartId": "2wvgtWow5BAmqagDUUPs", "externalCheckoutId": "PtGuejNRdvaItg3gyZbR"}, 'plodovi'));
     if (this.cart) {
-      // const token = sign("{cartId: '2wvgtWow5BAmqagDUUPs', externalCheckoutId: 'PtGuejNRdvaItg3gyZbR'}", 'plodovi')
-      // todo: redirect to checkout
-      // window.location.href = `https://plodovi.hr/checkout/${this.userId}`;
+      const token = jwt.sign( `{cartId: '${this.userId}', externalCheckoutId: 'PtGuejNRdvaItg3gyZbR'}`, 'plodovi');
+      window.location.href = `https://plodovi.hr/checkout/${this.userId}?token=${token}`;
     }
   }
 

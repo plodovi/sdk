@@ -21,12 +21,13 @@
     "semantic-release": "semantic-release"
   },
   "dependencies": {
-    "lit": "2.0.2",
-    "jsonwebtoken": "^8.5.1"
+    "jsonwebtoken": "^8.5.1",
+    "lit": "2.0.2"
   },
   "devDependencies": {
     "@custom-elements-manifest/analyzer": "0.4.17",
     "@open-wc/eslint-config": "9.2.1",
+    "@types/jsonwebtoken": "^9.0.2",
     "@typescript-eslint/eslint-plugin": "5.48.0",
     "@typescript-eslint/parser": "5.48.0",
     "@web/dev-server": "0.1.34",

@@ -14,6 +14,10 @@ export class AddToCart extends LitElement {
     await window.Plodovi.addToCart(this.product, this.quantity, this.pack);
   }
 
+  createRenderRoot() {
+    return this;
+  }
+
   render() {
     return html`
       <button @click=${this.__add}>
