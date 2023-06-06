@@ -12,11 +12,17 @@ export interface Options {
   app: FirebaseApp;
 	region: string;
 	userId?: string;
+
+  // todo: connect
+  lang?: string;
+  freeDelivery?: boolean;
+  successfulRedirectUrl?: string;
+  cancelRedirectUrl?: string;
 }
 
 export class Plodovi {
 	constructor(options: Options) {
-		this.region = options.region;
+		this.options = options;
 
     if (options.userId) {
       this.userId = options.userId;
@@ -48,8 +54,8 @@ export class Plodovi {
     })
 	}
 
-	region: string;
 	userId: string;
+  options: Options;
   firestore: Firestore;
 
 	cartOpen = false;
@@ -75,7 +81,7 @@ export class Plodovi {
     const cartItem = this.createCartItem(product, price, quantity, pack);
 
     if (this.cart) {
-      this.cart.region = this.region;
+      this.cart.region = this.options.region;
       const index = this.cart.items.findIndex(
         item =>
           item.id === cartItem.id &&
@@ -95,7 +101,7 @@ export class Plodovi {
         id: this.userId,
         items: [cartItem],
         itemIds: [cartItem.id],
-        region: this.region,
+        region: this.options.region,
         guestId: this.userId
       };
     }
@@ -123,7 +129,9 @@ export class Plodovi {
 
   async checkoutRedirect() {
     if (this.cart) {
-      window.location.href = `https://plodovi.hr/checkout/${this.userId}?token=${btoa(this.userId)}`;
+      const {app, ...options } = this.options;
+      await setDoc(doc(this.firestore, `external-checkouts`, this.userId), options);
+      window.location.href = `https://checkout.plodovi.hr?token=${btoa(this.userId)}`;
     }
   }
 

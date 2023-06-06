@@ -51,7 +51,7 @@ export class Cart extends LitElement {
                 ${item.quantity}
                 ${item.quantityType === 'piece' ? 'kom' : 'kg'}
               </p>
-              <p>${finalPrice(item, window.Plodovi.region)} €</p>
+              <p>${finalPrice(item, window.Plodovi.options.region)} €</p>
 
               <div>
                 <button @click=${async () => {
