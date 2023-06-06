@@ -1,7 +1,6 @@
 import { doc, Firestore, getDoc, getFirestore, setDoc, onSnapshot } from '@firebase/firestore';
 import { FirebaseApp } from '@firebase/app';
 import { Cart, CartItem } from './interfaces/cart.interface';
-import * as jwt from 'jsonwebtoken';
 
 export enum ListenerType {
 	CartItem = 'cart-item',
@@ -124,8 +123,7 @@ export class Plodovi {
 
   async checkoutRedirect() {
     if (this.cart) {
-      const token = jwt.sign( `{cartId: '${this.userId}', externalCheckoutId: 'PtGuejNRdvaItg3gyZbR'}`, 'plodovi');
-      window.location.href = `https://plodovi.hr/checkout/${this.userId}?token=${token}`;
+      window.location.href = `https://plodovi.hr/checkout/${this.userId}?token=${btoa(this.userId)}`;
     }
   }
 

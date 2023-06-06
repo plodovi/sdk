@@ -16,10 +16,6 @@ export class Product extends LitElement {
     this.counter += 1;
   }
 
-  createRenderRoot() {
-    return this;
-  }
-
   render() {
     return html`
       <h2>${this.title} Nr. ${this.counter}!</h2>

@@ -13,10 +13,6 @@ export class CheckoutButton extends LitElement {
     super.disconnectedCallback();
   }
 
-  createRenderRoot() {
-    return this;
-  }
-
   render() {
     return html`
       <button @click=${async () => {await window.Plodovi.checkoutRedirect();}}>

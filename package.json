@@ -21,7 +21,6 @@
     "semantic-release": "semantic-release"
   },
   "dependencies": {
-    "jsonwebtoken": "^8.5.1",
     "lit": "2.0.2"
   },
   "devDependencies": {

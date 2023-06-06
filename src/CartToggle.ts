@@ -18,10 +18,6 @@ export class CartToggle extends LitElement {
     this.cartItems = count;
   }
 
-  createRenderRoot() {
-    return this;
-  }
-
   connectedCallback() {
     super.connectedCallback();
     window.Plodovi.registerListener(ListenerType.CartItem, this.__updateCount);
