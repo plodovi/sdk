@@ -2,7 +2,19 @@ import { css, html, LitElement } from 'lit';
 
 export class CheckoutButton extends LitElement {
   static styles = css`
-    :host {}
+    :host {
+    <style>
+    button {
+      background: var(--color-primary);
+      border-radius: var(--br-small);
+      padding: var(--btn-padding);
+      outline: none;
+      border: 1px solid var(--text-light);
+      font-size: var(--font-size);
+      margin: var(--margin-x);
+    }
+    </style>
+    }
   `;
 
   connectedCallback() {
@@ -18,6 +30,7 @@ export class CheckoutButton extends LitElement {
       <button @click=${async () => {await window.Plodovi.checkoutRedirect();}}>
         <slot></slot>
       </button>
+
     `;
   }
 }

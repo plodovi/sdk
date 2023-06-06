@@ -4,7 +4,36 @@ import {ListenerType} from './init';
 
 export class CartToggle extends LitElement {
   static styles = css`
-    :host {}
+    :host {
+      background: var(--color-primary);
+      border-radius: var(--br-small);
+      padding: var(--btn-padding);
+      outline: none;
+      border: none;
+      font-size: var(--font-size);
+      color: var(--text-dark);
+      margin: var(--margin-x);
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+    }
+      button {
+        background: none;
+        outline: none;
+        border:none;
+        cursor: pointer;
+      }
+    div {
+      width: 20px;
+      height: 20px;
+      background: var(--text-light);
+      color: var(--color-primary);
+      border-radius: var(--br-big);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+    }
   `;
 
   @property({ type: Boolean }) count = true;
@@ -33,7 +62,7 @@ export class CartToggle extends LitElement {
       <button @click=${this.__toggle}>
         <slot></slot>
       </button>
-      ${this.count ? this.cartItems && html`<span>${this.cartItems}</span>` : ''}
+      ${this.count ? this.cartItems && html`<div>${this.cartItems}</div>` : ''}
     `;
   }
 }

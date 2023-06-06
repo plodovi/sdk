@@ -6,7 +6,62 @@ import { finalPrice } from './utils/final-price';
 
 export class Cart extends LitElement {
   static styles = css`
-    :host {}
+    :host {
+      width: 100%;
+    }
+
+    .cart {
+      background: rgba(32, 32, 42, 0.6);
+      max-width: 400px;
+      border: 1px solid var(--color-primary);
+      padding: var(--padding-all);
+      border-radius: var(--br-medium);;
+    }
+
+    .quantity-btn {
+      background: none;
+      outline: none;
+      border: none;
+      font-size: 20px;
+      color: var(--color-primary);
+      padding: 0;
+    }
+
+    input {
+      border: 1px solid var(--color-primary);
+      background: none;
+      color: var(--text-light);
+      padding: var(--padding-all);
+      text-align: center;
+      max-width: 40px;
+      margin: var(--margin-x);
+    }
+
+    input:focus-visible {
+      outline: none;
+    }
+
+    .cart-product-title {
+      font-size: 20px;
+    }
+
+    .remove-btn {
+      background: var(--color-primary);
+      border-radius: var(--br-small);
+      padding: var(--btn-padding);
+      outline: none;
+      border: none;
+      font-size: var(--font-size);
+      margin: var(--margin-y);
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+    }
+
+    .quantity-wrapper {
+      display: flex;
+      align-items: center;
+    }
   `;
 
   @property({ type: Number }) counter = 0;
@@ -45,16 +100,16 @@ export class Cart extends LitElement {
 
         ${this.cart?.items?.map(
           item => html`
-            <div style="border: 1px solid black">
-              <p>${item.label}</p>
-              <p>
+            <div class="cart">
+              <p class="cart-product-title">${item.label}</p>
+              <p class="quantity">
                 ${item.quantity}
                 ${item.quantityType === 'piece' ? 'kom' : 'kg'}
               </p>
-              <p>${finalPrice(item, window.Plodovi.options.region)} €</p>
+              <p class="price">${finalPrice(item, window.Plodovi.options.region)} €</p>
 
-              <div>
-                <button @click=${async () => {
+              <div class="quantity-wrapper">
+                <button class="quantity-btn" @click=${async () => {
                   await window.Plodovi.changeQuantity(this.cart?.items as CartItem[], item, item.quantity - 1);
                   this.requestUpdate();
                 }}>-</button>
@@ -66,17 +121,15 @@ export class Cart extends LitElement {
                     this.requestUpdate();
                   }}
                 />
-                <button @click=${async (e: any) => {
+                <button class="quantity-btn" @click=${async (e: any) => {
                   await window.Plodovi.changeQuantity(this.cart?.items as CartItem[], item, item.quantity + 1);
                   this.requestUpdate();
                 }}>+</button>
               </div>
 
-              <p>
-                <button @click=${() => this.__removeItem(item)}>
+                <button class="remove-btn" @click=${() => this.__removeItem(item)}>
                   Remove
                 </button>
-              </p>
             </div>
           `
         )}`
