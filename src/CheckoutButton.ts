@@ -2,8 +2,6 @@ import { css, html, LitElement } from 'lit';
 
 export class CheckoutButton extends LitElement {
   static styles = css`
-    :host {
-    <style>
     button {
       background: var(--color-primary);
       border-radius: var(--br-small);
@@ -12,8 +10,6 @@ export class CheckoutButton extends LitElement {
       border: 1px solid var(--text-light);
       font-size: var(--font-size);
       margin: var(--margin-x);
-    }
-    </style>
     }
   `;
 
