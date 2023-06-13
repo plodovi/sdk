@@ -1,7 +1,10 @@
 import { css, html, LitElement } from 'lit';
+import { sharedStyles } from './utils/shared-styles';
 
 export class CheckoutButton extends LitElement {
-  static styles = css`
+  static styles = [
+    sharedStyles,
+    css`
     :host {
     <style>
     button {
@@ -15,7 +18,7 @@ export class CheckoutButton extends LitElement {
     }
     </style>
     }
-  `;
+  `];
 
   connectedCallback() {
     super.connectedCallback();

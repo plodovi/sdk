@@ -1,9 +1,12 @@
 import { html, css, LitElement } from 'lit';
 import { property, state } from 'lit/decorators.js';
 import {ListenerType} from './init';
+import { sharedStyles } from './utils/shared-styles';
 
 export class CartToggle extends LitElement {
-  static styles = css`
+  static styles = [
+    sharedStyles,
+    css`
     :host {
       background: var(--color-primary);
       border-radius: var(--br-small);
@@ -34,7 +37,7 @@ export class CartToggle extends LitElement {
       justify-content: center;
 
     }
-  `;
+  `];
 
   @property({ type: Boolean }) count = true;
   @state() cartItems = 0;
@@ -59,7 +62,7 @@ export class CartToggle extends LitElement {
 
   render() {
     return html`
-      <button @click=${this.__toggle}>
+      <button @click=${this.__toggle} class='pero'>
         <slot></slot>
       </button>
       ${this.count ? this.cartItems && html`<div>${this.cartItems}</div>` : ''}

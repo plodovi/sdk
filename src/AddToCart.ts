@@ -1,8 +1,11 @@
 import { html, css, LitElement } from 'lit';
 import { property } from 'lit/decorators.js';
+import { sharedStyles } from './utils/shared-styles';
 
 export class AddToCart extends LitElement {
-  static styles = css`
+  static styles = [
+    sharedStyles,
+    css`
     :host {
       background: var(--color-primary);
       border-radius: var(--br-small);
@@ -21,7 +24,7 @@ export class AddToCart extends LitElement {
       border:none;
       cursor: pointer;
     }
-  `;
+  `];
 
   @property() product = '';
   @property() quantity = 1;
