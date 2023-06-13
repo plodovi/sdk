@@ -11,11 +11,25 @@ export class Cart extends LitElement {
     }
 
     .cart {
-      background: rgba(32, 32, 42, 0.6);
-      max-width: 400px;
+      display: flex;
+      flex-wrap: wrap;
+      background: rgb(44, 44, 46);
+      max-width: 300px;
+      width: 100%;
       border: 1px solid var(--color-primary);
-      padding: var(--padding-all);
+      padding: var(--padding-all-20);
       border-radius: var(--br-medium);;
+    }
+
+    .product-wrapper {
+      width: 100%;
+      display: flex;
+      flex-wrap: wrap;
+      border-bottom: 1px solid var(--color-primary);
+    }
+
+    .cart-product {
+      flex: 1;
     }
 
     .quantity-btn {
@@ -25,16 +39,19 @@ export class Cart extends LitElement {
       font-size: 20px;
       color: var(--color-primary);
       padding: 0;
+      cursor: pointer;
     }
 
     input {
-      border: 1px solid var(--color-primary);
+      border-top: 1px solid var(--color-primary);
+      border-bottom: 1px solid var(--color-primary);
+      border-left: none;
+      border-right: none;
       background: none;
-      color: var(--text-light);
+      color: var(--color-primary);;
       padding: var(--padding-all);
       text-align: center;
-      max-width: 40px;
-      margin: var(--margin-x);
+      max-width: 30px;
     }
 
     input:focus-visible {
@@ -43,22 +60,46 @@ export class Cart extends LitElement {
 
     .cart-product-title {
       font-size: 20px;
-    }
-
-    .remove-btn {
-      background: var(--color-primary);
-      border-radius: var(--br-small);
-      padding: var(--btn-padding);
-      outline: none;
-      border: none;
-      font-size: var(--font-size);
-      margin: var(--margin-y);
-      display: flex;
-      align-items: center;
-      cursor: pointer;
+      margin: 0;
     }
 
     .quantity-wrapper {
+      display: flex;
+      align-items: center;
+    }
+
+    .remove-btn {
+      color: var(--color-primary);
+      border: none;
+      background: none;
+      outline: none;
+      font-size: var(--font-size);
+      margin: var(--margin-y-20);
+      cursor: pointer;
+    }
+
+    .quantity-btn-wrapper {
+      display: flex;
+      align-items: center;
+    }
+
+    .quantity-btn {
+      border: 1px solid var(--color-primary);
+      padding: 6px 10px;
+      text-align: center;
+      max-width: 35px;
+      width: 100%;
+      transition: .4s all ease-in-out;
+    }
+
+    .quantity-btn:hover {
+      background: var(--color-primary);
+      color: white;
+      transition: .4s all ease-in-out;
+    }
+
+    .image-wrapper {
+      width: 35%;
       display: flex;
       align-items: center;
     }
@@ -101,35 +142,45 @@ export class Cart extends LitElement {
         ${this.cart?.items?.map(
           item => html`
             <div class="cart">
-              <p class="cart-product-title">${item.label}</p>
-              <p class="quantity">
-                ${item.quantity}
-                ${item.quantityType === 'piece' ? 'kom' : 'kg'}
-              </p>
-              <p class="price">${finalPrice(item, window.Plodovi.options.region)} €</p>
+              <div class='product-wrapper'>
+                <div class="image-wrapper">
+                  <p>image holder</p>
+                </div>
+                <div class='cart-product'>
+                <p class="cart-product-title">${item.label}</p>
+                <div class='quantity-wrapper'>
+                  <p class="quantity">
+                    ${item.quantity}
+                    ${item.quantityType === 'piece' ? 'kom' : 'kg'}
+                  </p>
+                  <span style='margin: 0 5px'>/</span>
+                  <p class="price">${finalPrice(item, window.Plodovi.options.region)} €</p>
+                </div>
 
-              <div class="quantity-wrapper">
-                <button class="quantity-btn" @click=${async () => {
-                  await window.Plodovi.changeQuantity(this.cart?.items as CartItem[], item, item.quantity - 1);
-                  this.requestUpdate();
-                }}>-</button>
-                <input
-                  type="number"
-                  value=${item.quantity}
-                  @change=${async (e: any) => {
-                    await window.Plodovi.changeQuantity(this.cart?.items as CartItem[], item, +e.target.value);
+                <div class="quantity-btn-wrapper">
+                  <button class="quantity-btn" @click=${async () => {
+                    await window.Plodovi.changeQuantity(this.cart?.items as CartItem[], item, item.quantity - 1);
                     this.requestUpdate();
-                  }}
-                />
-                <button class="quantity-btn" @click=${async (e: any) => {
-                  await window.Plodovi.changeQuantity(this.cart?.items as CartItem[], item, item.quantity + 1);
-                  this.requestUpdate();
-                }}>+</button>
-              </div>
+                  }}>-</button>
+                  <input
+                    type="text"
+                    value=${item.quantity}
+                    @change=${async (e: any) => {
+                      await window.Plodovi.changeQuantity(this.cart?.items as CartItem[], item, +e.target.value);
+                      this.requestUpdate();
+                    }}
+                  />
+                  <button class="quantity-btn" @click=${async (e: any) => {
+                    await window.Plodovi.changeQuantity(this.cart?.items as CartItem[], item, item.quantity + 1);
+                    this.requestUpdate();
+                  }}>+</button>
+                </div>
 
-                <button class="remove-btn" @click=${() => this.__removeItem(item)}>
-                  Remove
-                </button>
+                  <button class="remove-btn" @click=${() => this.__removeItem(item)}>
+                    Remove
+                  </button>
+                </div>
+              </div>
             </div>
           `
         )}`
