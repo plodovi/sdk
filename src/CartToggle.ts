@@ -20,12 +20,14 @@ export class CartToggle extends LitElement {
       align-items: center;
       cursor: pointer;
     }
-      button {
-        background: none;
-        outline: none;
-        border:none;
-        cursor: pointer;
-      }
+
+    button {
+      background: none;
+      outline: none;
+      border:none;
+      cursor: pointer;
+    }
+
     div {
       width: 20px;
       height: 20px;
@@ -35,7 +37,6 @@ export class CartToggle extends LitElement {
       display: flex;
       align-items: center;
       justify-content: center;
-
     }
   `];
 

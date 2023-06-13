@@ -18,6 +18,7 @@ export class AddToCart extends LitElement {
       align-items: center;
       cursor: pointer;
     }
+
     button {
       background: none;
       outline: none;
