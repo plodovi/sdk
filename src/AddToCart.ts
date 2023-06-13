@@ -12,11 +12,11 @@ export class AddToCart extends LitElement {
       padding: var(--btn-padding);
       outline: none;
       border: none;
-      font-size: var(--font-size);
       margin: var(--margin-x);
       align-items: center;
       cursor: pointer;
       display: inline-flex;
+      -webkit-tap-highlight-color: transparent;
     }
 
     button {
@@ -24,6 +24,8 @@ export class AddToCart extends LitElement {
       outline: none;
       border:none;
       cursor: pointer;
+      font-size: var(--font-size);
+      -webkit-tap-highlight-color: transparent;
     }
   `];
 

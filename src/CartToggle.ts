@@ -13,12 +13,12 @@ export class CartToggle extends LitElement {
       padding: var(--btn-padding);
       outline: none;
       border: none;
-      font-size: var(--font-size);
       color: var(--text-dark);
       margin: var(--margin-x);
       display: flex;
       align-items: center;
       cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
     }
 
     button {
@@ -26,6 +26,8 @@ export class CartToggle extends LitElement {
       outline: none;
       border:none;
       cursor: pointer;
+      font-size: var(--font-size);
+      -webkit-tap-highlight-color: transparent;
     }
 
     div {

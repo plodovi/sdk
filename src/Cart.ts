@@ -23,8 +23,9 @@ export class Cart extends LitElement {
       border-radius: var(--br-medium);
       color:var(--text-light);
       position: absolute;
-      right: 0px;
+      right: 1rem;
       top: 5rem;
+      -webkit-tap-highlight-color: transparent;
     }
 
     .product-wrapper {
