@@ -5,19 +5,26 @@ export class CheckoutButton extends LitElement {
   static styles = [
     sharedStyles,
     css`
-    :host {
-    <style>
-    button {
-      background: var(--color-primary);
-      border-radius: var(--br-small);
-      padding: var(--btn-padding);
-      outline: none;
-      border: 1px solid var(--text-light);
-      font-size: var(--font-size);
-      margin: var(--margin-x);
-    }
-    </style>
-    }
+      :host {
+        background: var(--color-primary);
+        border-radius: var(--br-small);
+        padding: var(--btn-padding);
+        outline: none;
+        border: none;
+        font-size: var(--font-size);
+        color: var(--text-dark);
+        margin: var(--margin-x);
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+      }
+
+      button {
+        background: none;
+        outline: none;
+        border:none;
+        cursor: pointer;
+      }
   `];
 
   connectedCallback() {

@@ -21,10 +21,10 @@ export const sharedStyles = css`
       --font-size-md: 20px;
       --quantity-btn-w: 30px;
   }
-    //body {
-    //  background: rgb(18, 18, 18);
-    //  color:var(--text-light)
-    //}
+    body {
+      background: rgb(18, 18, 18);
+      color:var(--text-light)
+    }
     #demo {
       display: flex;
       flex-wrap: wrap;

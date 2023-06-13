@@ -10,7 +10,6 @@ export class Cart extends LitElement {
     sharedStyles,
     css`
     :host {
-      width: 100%;
     }
 
     .cart {
@@ -21,7 +20,11 @@ export class Cart extends LitElement {
       width: 100%;
       border: 1px solid var(--color-primary);
       padding: var(--padding-all-20);
-      border-radius: var(--br-medium);;
+      border-radius: var(--br-medium);
+      color:var(--text-light);
+      position: absolute;
+      right: 0px;
+      top: 5rem;
     }
 
     .product-wrapper {
@@ -140,7 +143,6 @@ export class Cart extends LitElement {
   render() {
     return this.open
       ? html`
-        <p>Cart</p>
 
         ${this.cart?.items?.map(
         item => html`

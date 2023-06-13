@@ -14,9 +14,9 @@ export class AddToCart extends LitElement {
       border: none;
       font-size: var(--font-size);
       margin: var(--margin-x);
-      display: flex;
       align-items: center;
       cursor: pointer;
+      display: inline-flex;
     }
 
     button {
