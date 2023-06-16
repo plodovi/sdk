@@ -10,6 +10,8 @@ export class CheckoutButton extends LitElement {
         align-items: center;
         justify-content: center;
         cursor: pointer;
+        margin-top: 20px;
+        padding-bottom: 20px;
         -webkit-tap-highlight-color: transparent;
         width: 100%;
         border-bottom: 1px solid var(--color-primary);
@@ -26,7 +28,6 @@ export class CheckoutButton extends LitElement {
         outline: none;
         border: none;
         color: var(--text-dark)!important;
-        margin: var(--margin-x);
         font-size: var(--font-size);
         -webkit-tap-highlight-color: transparent;
       }
