@@ -6,6 +6,19 @@ export class CheckoutButton extends LitElement {
     sharedStyles,
     css`
       :host {
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        -webkit-tap-highlight-color: transparent;
+        width: 100%;
+        border-bottom: 1px solid var(--color-primary);
+        @media (max-width: 600px) {
+          padding: var(--btn-padding-xs);
+        }
+      }
+
+      button {
+        width: 100%;
         background: var(--color-primary);
         border-radius: var(--br-small);
         padding: var(--btn-padding);
@@ -13,25 +26,8 @@ export class CheckoutButton extends LitElement {
         border: none;
         color: var(--text-dark)!important;
         margin: var(--margin-x);
-        display: flex;
-        align-items: center;
-        cursor: pointer;
-        -webkit-tap-highlight-color: transparent;
-        @media (max-width: 600px) {
-          padding: var(--btn-padding-xs);
-        }
-      }
-
-      button {
-        background: none;
-        outline: none;
-        border:none;
-        cursor: pointer;
         font-size: var(--font-size);
         -webkit-tap-highlight-color: transparent;
-        @media (max-width: 600px) {
-          font-size:14px
-        }
       }
   `];
 
