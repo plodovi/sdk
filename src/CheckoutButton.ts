@@ -8,6 +8,7 @@ export class CheckoutButton extends LitElement {
       :host {
         display: flex;
         align-items: center;
+        justify-content: center;
         cursor: pointer;
         -webkit-tap-highlight-color: transparent;
         width: 100%;
