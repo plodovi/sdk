@@ -12,7 +12,6 @@ export class AddToCart extends LitElement {
       padding: var(--btn-padding);
       outline: none;
       border: none;
-      margin: var(--margin-x);
       align-items: center;
       cursor: pointer;
       display: inline-flex;

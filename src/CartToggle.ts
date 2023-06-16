@@ -19,6 +19,7 @@ export class CartToggle extends LitElement {
     }
 
     button {
+      margin-right: 5px;
       background: none;
       outline: none;
       border:none;
