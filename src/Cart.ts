@@ -206,9 +206,7 @@ export class Cart extends LitElement {
                   </button>
                 </div>
               </div>
-              <div class='checkout-wrapper'>
               <plodovi-checkout-button>Go to checkout</plodovi-checkout-button>
-              </div>
             </div>
           `
       )}`
