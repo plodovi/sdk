@@ -110,6 +110,25 @@ export class Cart extends LitElement {
       display: flex;
       align-items: center;
     }
+      .checkout-wrapper {
+        width: 100%;
+        text-align: center;
+        background: rgb(198, 163, 98);
+        border-radius: 8px;
+        padding: 10px 1.25rem;
+        outline: none;
+        border: none;
+        color: black!important;
+        margin: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        -webkit-tap-highlight-color: transparent;
+        @media (max-width: 600px) {
+          padding: 5px 0.75rem;
+        }
+      }
   `];
 
   @property({ type: Number }) counter = 0;
@@ -187,7 +206,9 @@ export class Cart extends LitElement {
                   </button>
                 </div>
               </div>
-              <plodovi-checkout-button></plodovi-checkout-button>
+              <div class='checkout-wrapper'>
+              <plodovi-checkout-button>Pero</plodovi-checkout-button>
+              </div>
             </div>
           `
       )}`
