@@ -11,12 +11,15 @@ export class CheckoutButton extends LitElement {
         padding: var(--btn-padding);
         outline: none;
         border: none;
-        color: var(--text-dark);
+        color: var(--text-dark)!important;
         margin: var(--margin-x);
         display: flex;
         align-items: center;
         cursor: pointer;
         -webkit-tap-highlight-color: transparent;
+        @media (max-width: 600px) {
+          padding: var(--btn-padding-xs);
+        }
       }
 
       button {
@@ -26,6 +29,9 @@ export class CheckoutButton extends LitElement {
         cursor: pointer;
         font-size: var(--font-size);
         -webkit-tap-highlight-color: transparent;
+        @media (max-width: 600px) {
+          font-size:14px
+        }
       }
   `];
 

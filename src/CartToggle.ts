@@ -8,9 +8,6 @@ export class CartToggle extends LitElement {
     sharedStyles,
     css`
     :host {
-      background: var(--color-primary);
-      border-radius: var(--br-small);
-      padding: var(--btn-padding);
       outline: none;
       border: none;
       color: var(--text-dark);
@@ -65,7 +62,8 @@ export class CartToggle extends LitElement {
 
   render() {
     return html`
-      <button @click=${this.__toggle} class='pero'>
+
+      <button @click=${this.__toggle}>
         <slot></slot>
       </button>
       ${this.count ? this.cartItems && html`<div>${this.cartItems}</div>` : ''}

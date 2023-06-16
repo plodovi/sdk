@@ -6,7 +6,40 @@
         content='width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0'>
   <meta http-equiv='X-UA-Compatible' content='ie=edge'>
   <style>
-    </style>
+
+    :host {
+      --color-primary: rgb(198, 163, 98);
+      --text-light: #e5e7eb;
+      --text-dark: black;
+      --br-small: 8px;
+      --br-medium: 16px;
+      --br-big: 30px;
+      --margin-y: 10px 0;
+      --margin-y-20: 20px 0;
+      --padding-y: 10px 0;
+      --margin-x: 0px 10px;
+      --padding-x: 0px 10px;
+      --padding-all: 10px;
+      --padding-all-20: 20px;
+      --margin-all: 10px;
+      --btn-padding: 10px 1.25rem;
+      --btn-padding-xs: 5px 0.75rem;
+      --font-size: 16px;
+      --font-size-md: 20px;
+      --quantity-btn-w: 30px;
+    }
+    body {
+      background: rgb(18, 18, 18);
+      color:var(--text-light)
+    }
+    #demo {
+      display: flex;
+      flex-wrap: wrap;
+      width: 100%;
+    }
+
+
+  </style>
 </head>
 <body>
   <div id="demo"></div>
@@ -51,7 +84,7 @@
 
         <plodovi-add-to-cart product='TAvYuTxvRZ8oqCHV4b2t' pack='0'>Add This Product</plodovi-add-to-cart>
 
-        <plodovi-cart-toggle>A Toggle</plodovi-cart-toggle>
+        <plodovi-cart-toggle> <img src='../src/icon/cart.svg' alt=''></plodovi-cart-toggle>
 
         <plodovi-cart></plodovi-cart>
       `,
@@ -59,5 +92,8 @@
     );
   </script>
 </body>
+<style>
+
+</style>
 </html>
 
