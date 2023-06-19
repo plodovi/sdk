@@ -20,7 +20,7 @@ export class Cart extends LitElement {
       max-width: 300px;
       width: 100%;
       border: 1px solid var(--color-primary);
-      padding: var(--padding-all-20);
+      padding: var(--padding-all-md);
       border-radius: var(--br-medium);
       color:var(--text-light);
       position: absolute;

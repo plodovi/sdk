@@ -27,7 +27,7 @@ export class CheckoutButton extends LitElement {
         padding: var(--btn-padding);
         outline: none;
         border: none;
-        color: var(--text-dark)!important;
+        color: var(--text-dark);
         font-size: var(--font-size);
         -webkit-tap-highlight-color: transparent;
       }
