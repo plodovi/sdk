@@ -43,11 +43,15 @@ export class Cart extends LitElement {
     .quantity-btn {
       background: none;
       outline: none;
-      border: none;
-      font-size: var(--font-size-md);
+      border: 1px solid var(--color-primary);
+      font-size: var(--font-size);
       color: var(--color-primary);
-      padding: 0;
+      padding: var(--padding-all);
       cursor: pointer;
+      text-align: center;
+      max-width: 35px;
+      width: 100%;
+      transition: .4s all ease-in-out;
     }
 
     input {
@@ -56,6 +60,7 @@ export class Cart extends LitElement {
       border-left: none;
       border-right: none;
       background: none;
+      font-size: var(--font-size);
       color: var(--color-primary);;
       padding: var(--padding-all);
       text-align: center;
@@ -63,7 +68,12 @@ export class Cart extends LitElement {
       max-width: var(--quantity-btn-w);
     }
 
-    input:focus-visible {
+    @supports (-webkit-touch-callout: none) {
+      input {}
+    }
+
+
+      input:focus-visible {
       outline: none;
     }
 
@@ -90,15 +100,6 @@ export class Cart extends LitElement {
     .quantity-btn-wrapper {
       display: flex;
       align-items: center;
-    }
-
-    .quantity-btn {
-      border: 1px solid var(--color-primary);
-      padding: 6px 10px;
-      text-align: center;
-      max-width: 35px;
-      width: 100%;
-      transition: .4s all ease-in-out;
     }
 
     .quantity-btn:hover {
