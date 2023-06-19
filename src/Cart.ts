@@ -59,6 +59,7 @@ export class Cart extends LitElement {
       color: var(--color-primary);;
       padding: var(--padding-all);
       text-align: center;
+      border-radius: 0;
       max-width: var(--quantity-btn-w);
     }
 
