@@ -160,7 +160,7 @@ export class Cart extends LitElement {
         ${this.cart?.items?.map(
         item => html`
             <div class="cart">
-              <span class="close">x</span>
+<!--              <span class="close">x</span>-->
               <div class='product-wrapper'>
                 <div class="image-wrapper">
                   <p>image holder</p>
