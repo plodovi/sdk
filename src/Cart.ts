@@ -112,6 +112,12 @@ export class Cart extends LitElement {
       width: 35%;
       display: flex;
       align-items: center;
+      margin-right: 15px;
+    }
+
+    .image-wrapper img {
+      width: 100%;
+      object-fit: contain;
     }
 
     .close {
