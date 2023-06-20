@@ -120,6 +120,10 @@ export class Cart extends LitElement {
       object-fit: contain;
     }
 
+    .image {
+      width: 100%;
+    }
+
     .close {
       color: var(--color-primary);
       font-size: 25px;
@@ -174,15 +178,14 @@ export class Cart extends LitElement {
   render() {
     return this.open
       ? html`
-        <div class="overlay" @click=${() => this.__onOpen(false)}></div>
-
+        ${this.cart?.items.length ? `html<div class="overlay" @click=${() => this.__onOpen(false)}></div>` : ''}
         ${this.cart?.items?.map(
         item => html`
             <div class="cart">
               <span class="close" @click=${() => this.__onOpen(false)}>x</span>
               <div class="product-wrapper">
                 <div class="image-wrapper">
-                  <img src="${item.image}" alt="product">
+                  <img class="image" src="${item.image}" alt="product">
                 </div>
                 <div class="cart-product">
                 <p class="cart-product-title">${item.label}</p>

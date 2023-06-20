@@ -90,8 +90,7 @@ export class Plodovi {
       );
 
       if (index !== -1) {
-        this.cart.items[index].quantity =
-          this.cart.items[index].quantity + cartItem.quantity;
+        this.cart.items[index].quantity = +this.cart.items[index].quantity + +cartItem.quantity;
       } else {
         this.cart.items.push(cartItem);
         this.cart.itemIds.push(cartItem.id);

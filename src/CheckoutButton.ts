@@ -30,6 +30,7 @@ export class CheckoutButton extends LitElement {
         color: var(--text-dark);
         font-size: var(--font-size);
         -webkit-tap-highlight-color: transparent;
+        cursor: pointer;
       }
   `];
 
