@@ -178,11 +178,11 @@ export class Cart extends LitElement {
   render() {
     return this.open
       ? html`
-        ${this.cart?.items.length ? `html<div class="overlay" @click=${() => this.__onOpen(false)}></div>` : ''}
+        <div class="overlay" @click=${() => window.Plodovi.toggleCart()}></div>
         ${this.cart?.items?.map(
         item => html`
             <div class="cart">
-              <span class="close" @click=${() => this.__onOpen(false)}>x</span>
+              <span class="close" @click=${() => window.Plodovi.toggleCart()}>x</span>
               <div class="product-wrapper">
                 <div class="image-wrapper">
                   <img class="image" src="${item.image}" alt="product">

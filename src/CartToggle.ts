@@ -44,7 +44,9 @@ export class CartToggle extends LitElement {
   @state() cartItems = 0;
 
   __toggle() {
-    window.Plodovi.toggleCart();
+    if (this.cartItems) {
+      window.Plodovi.toggleCart();
+    }
   }
 
   __updateCount = (count: number) => {
