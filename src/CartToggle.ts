@@ -13,15 +13,14 @@ export class CartToggle extends LitElement {
       color: var(--text-dark);
       margin: var(--margin-x);
       display: flex;
-      align-items: center;
+      align-items: flex-start;
       cursor: pointer;
       -webkit-tap-highlight-color: transparent;
     }
 
     button {
-      margin-right: 5px;
       background: none;
-
+      height: 100%;
       outline: none;
       border:none;
       cursor: pointer;
