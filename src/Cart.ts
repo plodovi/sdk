@@ -116,7 +116,7 @@ export class Cart extends LitElement {
 
     .close {
       color: var(--color-primary);
-      font-size: 25px;
+      font-size: 20px;
       position: absolute;
       right: 1rem;
       top: 0.5rem;
