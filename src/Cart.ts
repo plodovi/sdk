@@ -122,6 +122,17 @@ export class Cart extends LitElement {
       top: 0.5rem;
     }
 
+    .overlay {
+      background: white;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      opacity: .2;
+      width: 100%;
+      height: 100%;
+    }
   `];
 
   @property({ type: Number }) counter = 0;
@@ -156,11 +167,12 @@ export class Cart extends LitElement {
   render() {
     return this.open
       ? html`
+        <div class="overlay" @click=${() => this.__onOpen(false)}></div>
 
         ${this.cart?.items?.map(
         item => html`
             <div class="cart">
-              <span class="close">x</span>
+              <span class="close" @click=${() => this.__onOpen(false)}>x</span>
               <div class='product-wrapper'>
                 <div class="image-wrapper">
                   <p>image holder</p>
