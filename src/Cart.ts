@@ -116,7 +116,7 @@ export class Cart extends LitElement {
 
     .close {
       color: var(--color-primary);
-      font-size: 20px;
+      font-size: 25px;
       position: absolute;
       right: 1rem;
       top: 0.5rem;
@@ -160,7 +160,7 @@ export class Cart extends LitElement {
         ${this.cart?.items?.map(
         item => html`
             <div class="cart">
-<!--              <span class="close">x</span>-->
+              <span class="close">x</span>
               <div class='product-wrapper'>
                 <div class="image-wrapper">
                   <p>image holder</p>
