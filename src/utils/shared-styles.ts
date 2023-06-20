@@ -3,6 +3,7 @@ import { css } from 'lit';
 export const sharedStyles = css`
   :host {
     --color-primary: rgb(198, 163, 98);
+    --color-secondary: rgb(42, 41, 39);
     --text-light: #e5e7eb;
     --text-dark: black;
     --br-small: 8px;
@@ -24,14 +25,17 @@ export const sharedStyles = css`
     --margin-y: 10px 0;
     --margin-y-md: 20px 0;
     --margin-y-lg: 40px 0;
-    --margin-y-20: 20px 0;
     --margin-all: 10px;
+    --margin-all-md: 20px;
+    --margin-all-lg: 40px;
     --margin-x: 0px 10px;
+    --margin-x-md: 0px 20px;
+    --margin-x-lg: 0px 40px;
     --btn-padding: 10px 1.25rem;
     --btn-padding-xs: 5px 0.75rem;
     --font-size: 16px;
     --font-size-md: 20px;
-    --font-size-lg: 20px;
+    --font-size-lg: 30px;
     --quantity-btn-w: 30px;
   }
     body {
