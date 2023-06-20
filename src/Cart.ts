@@ -37,7 +37,7 @@ export class Cart extends LitElement {
     }
 
     .cart-product {
-      flex: 1;
+      width: 60%;
     }
 
     .quantity-btn {
@@ -93,7 +93,7 @@ export class Cart extends LitElement {
       background: none;
       outline: none;
       font-size: var(--font-size);
-      margin: var(--margin-y-20);
+      margin: var(--margin-y);
       cursor: pointer;
     }
 
