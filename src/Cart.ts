@@ -120,8 +120,20 @@ export class Cart extends LitElement {
       position: absolute;
       right: 1rem;
       top: 0.5rem;
+      cursor: pointer;
     }
 
+    .overlay {
+      background: white;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      opacity: .2;
+      width: 100%;
+      height: 100%;
+    }
   `];
 
   @property({ type: Number }) counter = 0;
@@ -156,23 +168,24 @@ export class Cart extends LitElement {
   render() {
     return this.open
       ? html`
+        <div class="overlay" @click=${() => this.__onOpen(false)}></div>
 
         ${this.cart?.items?.map(
         item => html`
             <div class="cart">
-              <span class="close">x</span>
-              <div class='product-wrapper'>
+              <span class="close" @click=${() => this.__onOpen(false)}>x</span>
+              <div class="product-wrapper">
                 <div class="image-wrapper">
-                  <p>image holder</p>
+                  <img src="${item.image}" alt="product">
                 </div>
-                <div class='cart-product'>
+                <div class="cart-product">
                 <p class="cart-product-title">${item.label}</p>
-                <div class='quantity-wrapper'>
+                <div class="quantity-wrapper">
                   <p class="quantity">
                     ${item.quantity}
                     ${item.quantityType === 'piece' ? 'kom' : 'kg'}
                   </p>
-                  <span style='margin: 0 5px'>/</span>
+                  <span style="margin: 0 5px">/</span>
                   <p class="price">${finalPrice(item, window.Plodovi.options.region)} €</p>
                 </div>
 
