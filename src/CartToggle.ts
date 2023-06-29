@@ -16,9 +16,12 @@ export class CartToggle extends LitElement {
       align-items: flex-start;
       cursor: pointer;
       -webkit-tap-highlight-color: transparent;
+      position: relative;
+      min-width: 50px;
     }
 
     button {
+      width: 100%;
       background: none;
       height: 100%;
       outline: none;
@@ -29,6 +32,9 @@ export class CartToggle extends LitElement {
     }
 
     div {
+      position: absolute;
+      top: 0;
+      right: -15px;
       width: 20px;
       height: 20px;
       background: var(--text-light);
@@ -38,6 +44,9 @@ export class CartToggle extends LitElement {
       align-items: center;
       justify-content: center;
     }
+      img {
+        height: 50px;
+      }
   `];
 
   @property({ type: Boolean }) count = true;

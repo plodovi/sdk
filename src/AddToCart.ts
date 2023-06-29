@@ -9,7 +9,6 @@ export class AddToCart extends LitElement {
     :host {
       background: var(--color-primary);
       border-radius: var(--br-small);
-      padding: var(--btn-padding);
       outline: none;
       border: none;
       align-items: center;
@@ -23,6 +22,7 @@ export class AddToCart extends LitElement {
       outline: none;
       border:none;
       cursor: pointer;
+      padding: var(--btn-padding);
       color: var(--text-dark);
       font-size: var(--font-size);
       -webkit-tap-highlight-color: transparent;
