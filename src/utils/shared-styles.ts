@@ -47,4 +47,7 @@ export const sharedStyles = css`
       flex-wrap: wrap;
       width: 100%;
     }
+  .cart-image {
+    height: 30px!important;
+  }
 `
