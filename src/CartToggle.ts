@@ -28,6 +28,7 @@ export class CartToggle extends LitElement {
       border:none;
       cursor: pointer;
       font-size: var(--font-size);
+      padding: var(--padding-y);
       -webkit-tap-highlight-color: transparent;
     }
 
