@@ -34,7 +34,7 @@ export class CartToggle extends LitElement {
     div {
       position: absolute;
       top: 0;
-      right: -15px;
+      right: -10px;
       width: 20px;
       height: 20px;
       background: var(--text-light);
