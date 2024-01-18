@@ -218,11 +218,13 @@ export class Cart extends LitElement {
                 </div>
 
                   <button class="remove-btn" @click=${() => this.__removeItem(item)}>
-                    Remove
+                    <slot name="remove"></slot>
                   </button>
                 </div>
               </div>
-              <plodovi-checkout-button>Go to checkout</plodovi-checkout-button>
+              <plodovi-checkout-button>
+                <slot name="checkout"></slot>
+              </plodovi-checkout-button>
             </div>
           `
       )}`
